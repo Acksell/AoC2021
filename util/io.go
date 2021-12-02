@@ -11,7 +11,7 @@ type Loadable interface {
 	Load(string) error
 }
 
-// ReadLines reads a file located at `path` and calls callback on each line.
+// ReadLines reads and loads a file line by line located at `path`.
 func ReadLines(path string, l Loadable) error {
 	file, err := os.Open(path)
 	if err != nil {
