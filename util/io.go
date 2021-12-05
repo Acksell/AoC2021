@@ -2,6 +2,7 @@ package util
 
 import (
 	"bufio"
+	"io/ioutil"
 	"os"
 )
 
@@ -27,4 +28,13 @@ func ReadLines(path string, l Loadable) error {
 		}
 	}
 	return nil
+}
+
+// ReadLines reads and loads a file line by line located at `path`.
+func LoadFile(path string, l Loadable) error {
+	f, err := ioutil.ReadFile(path)
+	if err != nil {
+		return err
+	}
+	return l.Load(string(f))
 }
